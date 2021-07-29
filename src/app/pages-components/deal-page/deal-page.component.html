@@ -1,0 +1,134 @@
+<p-toast></p-toast>
+
+<main class="bd-container">
+  <div class="content-wrapper">
+    <div class="left-wrapper">
+      <div class="deal-card">
+        <div class="deal-card__group">
+          <div class="deal-card__item vendor-item">
+            <p class="vendor-name"><i class="fas fa-store-alt"></i> {{ deal.vendorName }}</p>
+          </div>
+          <div class="deal-card__item locations-item">
+            <p *ngFor="let location of locations" class="location-item">
+              <i class="fas fa-map-marker-alt"></i> {{ location.city.countryName }},
+              {{ location.city.name }}<span *ngIf="location.street">,</span> {{ location.street }}
+              {{ location.number }}
+            </p>
+          </div>
+        </div>
+        <div class="deal-card__item">
+          <h2 class="deal-name">{{ deal.description }}</h2>
+        </div>
+        <div class="deal-card__item date-item">
+          <p class="date__header">
+            <i class="fas fa-hourglass-end"></i
+            >{{ 'deal.promotionExpiry' | translate: locale.language }}
+          </p>
+          <span class="expiration-date">{{ deal.dateEnd | date: 'MMMM d, y, h:mm a' }} </span>
+        </div>
+        <div class="deal-card__group">
+          <div class="deal-card__item category-item">
+            <p class="category-name">{{ deal.categoryName }}</p>
+            <div class="tags-wrapper">
+              <span class="tag-name" *ngFor="let tag of tags"> #{{ tag.name }} </span>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-wrapper p-col-12 p-md-4">
+          <button
+            *ngIf="!addedToFavorites"
+            type="button"
+            class="btn like"
+            title="{{ 'deal.notAddedToFavorites' | translate: locale.language }}"
+            (click)="addToFavorites()">
+            <i class="far fa-heart"></i>
+          </button>
+          <button
+            *ngIf="addedToFavorites"
+            type="button"
+            class="btn like"
+            title="{{ 'deal.addedToFavorites' | translate: locale.language }}"
+            (click)="addToFavorites()">
+            <i class="fas fa-heart"></i>
+          </button>
+          <button
+            *ngIf="!addedToOrders"
+            type="button"
+            class="btn"
+            title="{{ 'deal.notAddedToOrders' | translate: locale.language }}"
+            (click)="addToOrders(deal.id)">
+            <i class="pi pi-shopping-cart" style="font-size: 30px"></i>
+          </button>
+          <button 
+            *ngIf="addedToOrders" 
+            type="button" 
+            class="btn" 
+            title="{{ 'deal.addedToOrders' | translate: locale.language }}" 
+            disabled>
+            <i class="pi pi-shopping-cart" style="font-size: 30px"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="right-wrapper">
+      <div class="info-panel">
+        <p-tabView>
+          <p-tabPanel
+            leftIcon="pi pi-info-circle"
+            header="{{ 'deal.info' | translate: locale.language }}"
+          >
+            <div class="panel-content deal-info">{{ deal.fullDescription }}</div>
+          </p-tabPanel>
+          <p-tabPanel
+            leftIcon="fas fa-store-alt"
+            header="{{ 'deal.vendor.info' | translate: locale.language }}"
+          >
+            <div class="panel-content vendor-info">
+              <div class="vendor-info__paragraph">
+                <span class="vendor-info__subheader"
+                  >{{ 'deal.vendor.name' | translate: locale.language }}:
+                </span>
+                <p>{{ vendor.name }}</p>
+              </div>
+              <div class="vendor-info__paragraph">
+                <span class="vendor-info__subheader"
+                  >{{ 'deal.vendor.contacts' | translate: locale.language }}:
+                </span>
+                <p>{{ vendor.phoneNumber }}</p>
+                <p>{{ vendor.email }}</p>
+              </div>
+              <div class="vendor-info__paragraph">
+                <span class="vendor-info__subheader"
+                  >{{ 'deal.vendor.description' | translate: locale.language }}:
+                </span>
+                <p>{{ vendor.description }}</p>
+              </div>
+              <button
+                pButton
+                pRipple
+                class="vendor-info__btn"
+                type="button"
+                label="{{ 'deal.vendor.showAll' | translate: locale.language }}"
+                [routerLink]="['/']"
+                [queryParams]="{vendors: '[' + vendor.id + ']'}"
+              ></button>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel
+            leftIcon="pi pi-map-marker"
+            header="{{ 'deal.map' | translate: locale.language }}"
+          >
+            <div class="panel-content map">
+              <p-gmap
+                [options]="options"
+                [overlays]="overlays"
+                [style]="{width: '100%', height: '320px'}"
+              ></p-gmap>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+</main>
+

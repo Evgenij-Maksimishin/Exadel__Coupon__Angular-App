@@ -1,0 +1,170 @@
+@import '../../../scss/vars';
+
+.main__content {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+app-sorting-dropdown {
+  margin-bottom: 1rem;
+  margin-left: 5%;
+}
+
+.card__content{
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  width: 80%;
+}
+
+.deal-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+app-deal-card {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+}
+
+.deal-card {
+  width: 33% !important;
+}
+
+.deal-gallery__nothing-found {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+.deal-gallery__load-more {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+:host ::ng-deep {
+  p-progressSpinner {
+    margin-left: 7rem;
+    margin-top: 2rem;
+  }
+}
+
+
+@media (max-width: 1292px) {
+  app-sorting-dropdown {
+    margin-left: 4.5%;
+  }
+}
+
+@media (max-width: 1270px) {
+  app-sorting-dropdown {
+    margin-left: 4%;
+  }
+}
+
+@media (max-width: 1254px) {
+  app-sorting-dropdown {
+    margin-left: 3.5%;
+  }
+}
+
+@media (max-width: 1242px) {
+  /* app-sorting-dropdown {
+    padding-left: 1.7rem;
+  } */
+}
+
+@media (max-width: 1239px) {
+  app-deal-card {
+    width: 30%;
+  }
+
+  app-sorting-dropdown {
+    margin-left: 0%;
+  }
+}
+
+@media (max-width: 1168px) {
+  .deal-card {
+    width: 14.5rem !important;
+  }
+
+  .short-description {
+    width: 70%;
+  }
+
+  .card__content{
+    width: 100%;
+  }
+}
+
+@media (max-width: 1241px) {
+  app-sorting-dropdown {
+    padding-left: 0rem;
+  }
+}
+
+@media (max-width: 954px) {
+  /* .deal-gallery {
+    justify-content: space-around;
+  } */
+
+  .deal-gallery {
+    justify-content: space-between;
+  }
+  app-deal-card {
+    width: 44% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .main__content {
+    flex-direction: column;
+  }
+
+  .card__content {
+    margin: 0rem;
+  }
+
+  app-sorting-dropdown {
+    padding-left: 0rem;
+    padding-top: 1.6rem;
+  }
+
+}
+
+@media (max-width: 799px) {
+  .deal-gallery {
+    justify-content: space-between;
+  }
+
+
+}
+
+@media (max-width: 560px) {
+  app-deal-card {
+    width: 100% !important;
+  }
+
+  app-sorting-dropdown {
+    padding-left: 0rem;
+  }
+}

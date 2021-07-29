@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 3rem;
+}
+
+input, span {
+  height: 100%;
+  width: 100%;
+}
+
+:host ::ng-deep .p-menu-overlay {
+  left: 0;
+  width: 100%;
+}

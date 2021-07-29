@@ -1,0 +1,724 @@
+{
+  "locations": [
+    {
+      "id": 2,
+      "name": "Poland",
+      "country": true,
+      "checked": true
+    },
+    {
+      "id": 4,
+      "name": "Poznan",
+      "country": false,
+      "checked": false
+    },
+    {
+      "id": 1,
+      "name": "Szczecin",
+      "country": false,
+      "checked": false
+    },
+    {
+      "id": 5,
+      "name": "Russia",
+      "country": true,
+      "checked": false
+    },
+    {
+      "id": 19,
+      "name": "Chelyabinsk",
+      "country": false,
+      "checked": false
+    },
+    {
+      "id": 1,
+      "name": "Ukraine",
+      "country": true,
+      "checked": false
+    },
+    {
+      "id": 5,
+      "name": "Kiev",
+      "country": false,
+      "checked": false
+    },
+    {
+      "id": 7,
+      "name": "Lviv",
+      "country": false,
+      "checked": false
+    },
+    {
+      "id": 6,
+      "name": "Odessa",
+      "country": false,
+      "checked": false
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Beauty and Spa",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "Food and Drink",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Health",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "name": "Hotels and Travel",
+      "checked": false
+    },
+    {
+      "id": 5,
+      "name": "Entertainment",
+      "checked": false
+    },
+    {
+      "id": 6,
+      "name": "Sport and Fitness",
+      "checked": false
+    },
+    {
+      "id": 7,
+      "name": "Shopping",
+      "checked": false
+    },
+    {
+      "id": 8,
+      "name": "Education",
+      "checked": false
+    }
+  ],
+  "tags": [
+    {
+      "id": 5,
+      "name": "hair",
+      "checked": false
+    },
+    {
+      "id": 6,
+      "name": "makeup",
+      "checked": false
+    },
+    {
+      "id": 7,
+      "name": "massage",
+      "checked": false
+    },
+    {
+      "id": 8,
+      "name": "nails",
+      "checked": false
+    },
+    {
+      "id": 9,
+      "name": "skin care",
+      "checked": false
+    },
+    {
+      "id": 10,
+      "name": "delivery",
+      "checked": false
+    },
+    {
+      "id": 11,
+      "name": "breakfast",
+      "checked": false
+    },
+    {
+      "id": 12,
+      "name": "lunch",
+      "checked": false
+    },
+    {
+      "id": 13,
+      "name": "dinner",
+      "checked": false
+    },
+    {
+      "id": 14,
+      "name": "sweets",
+      "checked": false
+    },
+    {
+      "id": 15,
+      "name": "restaurant",
+      "checked": false
+    },
+    {
+      "id": 16,
+      "name": "cafe",
+      "checked": false
+    },
+    {
+      "id": 17,
+      "name": "bar",
+      "checked": false
+    },
+    {
+      "id": 18,
+      "name": "dental care",
+      "checked": false
+    },
+    {
+      "id": 19,
+      "name": "vision",
+      "checked": false
+    },
+    {
+      "id": 20,
+      "name": "weight loss",
+      "checked": false
+    },
+    {
+      "id": 21,
+      "name": "skin care",
+      "checked": false
+    },
+    {
+      "id": 22,
+      "name": "physiotherapy",
+      "checked": false
+    },
+    {
+      "id": 23,
+      "name": "mental care",
+      "checked": false
+    },
+    {
+      "id": 24,
+      "name": "seaside",
+      "checked": false
+    },
+    {
+      "id": 25,
+      "name": "countryside",
+      "checked": false
+    },
+    {
+      "id": 26,
+      "name": "day trip",
+      "checked": false
+    },
+    {
+      "id": 27,
+      "name": "excursion",
+      "checked": false
+    },
+    {
+      "id": 28,
+      "name": "with kids",
+      "checked": false
+    },
+    {
+      "id": 29,
+      "name": "health resort",
+      "checked": false
+    },
+    {
+      "id": 30,
+      "name": "show",
+      "checked": false
+    },
+    {
+      "id": 31,
+      "name": "theatre",
+      "checked": false
+    },
+    {
+      "id": 32,
+      "name": "music",
+      "checked": false
+    },
+    {
+      "id": 33,
+      "name": "family",
+      "checked": false
+    },
+    {
+      "id": 34,
+      "name": "festival",
+      "checked": false
+    },
+    {
+      "id": 35,
+      "name": "sport event",
+      "checked": false
+    },
+    {
+      "id": 36,
+      "name": "for kids",
+      "checked": false
+    },
+    {
+      "id": 37,
+      "name": "gym",
+      "checked": false
+    },
+    {
+      "id": 38,
+      "name": "swimming",
+      "checked": false
+    },
+    {
+      "id": 39,
+      "name": "crossfit",
+      "checked": false
+    },
+    {
+      "id": 40,
+      "name": "dance school",
+      "checked": false
+    },
+    {
+      "id": 41,
+      "name": "clothes",
+      "checked": false
+    },
+    {
+      "id": 42,
+      "name": "shoes",
+      "checked": false
+    },
+    {
+      "id": 43,
+      "name": "household",
+      "checked": false
+    },
+    {
+      "id": 44,
+      "name": "toys",
+      "checked": false
+    },
+    {
+      "id": 45,
+      "name": "sport",
+      "checked": false
+    },
+    {
+      "id": 46,
+      "name": "computer",
+      "checked": false
+    },
+    {
+      "id": 47,
+      "name": "for men",
+      "checked": false
+    },
+    {
+      "id": 48,
+      "name": "for women",
+      "checked": false
+    },
+    {
+      "id": 49,
+      "name": "for kids",
+      "checked": false
+    },
+    {
+      "id": 50,
+      "name": "for pets",
+      "checked": false
+    },
+    {
+      "id": 51,
+      "name": "languages",
+      "checked": false
+    },
+    {
+      "id": 52,
+      "name": "for kids",
+      "checked": false
+    },
+    {
+      "id": 53,
+      "name": "yoga",
+      "checked": false
+    },
+    {
+      "id": 54,
+      "name": "cinema",
+      "checked": false
+    },
+    {
+      "id": 55,
+      "name": "design",
+      "checked": false
+    },
+    {
+      "id": 56,
+      "name": "cooking course",
+      "checked": false
+    },
+    {
+      "id": 57,
+      "name": "finances",
+      "checked": false
+    },
+    {
+      "id": 58,
+      "name": "English",
+      "checked": false
+    }
+  ],
+  "vendors": [
+    {
+      "id": 1,
+      "name": "Health Hub",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "Nail Candy",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Crystal Palace Spa",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "name": "Imagine Spa",
+      "checked": false
+    },
+    {
+      "id": 5,
+      "name": "Glow Clinic",
+      "checked": false
+    },
+    {
+      "id": 6,
+      "name": "Beauty Express Salon",
+      "checked": false
+    },
+    {
+      "id": 7,
+      "name": "Honeys hair",
+      "checked": false
+    },
+    {
+      "id": 8,
+      "name": "Pinkberry",
+      "checked": false
+    },
+    {
+      "id": 9,
+      "name": "Your Treats Bakery",
+      "checked": false
+    },
+    {
+      "id": 10,
+      "name": "Bite Me Burger",
+      "checked": false
+    },
+    {
+      "id": 11,
+      "name": "Sync Bar",
+      "checked": false
+    },
+    {
+      "id": 12,
+      "name": "EatWith",
+      "checked": false
+    },
+    {
+      "id": 13,
+      "name": "Melody Restaurant",
+      "checked": false
+    },
+    {
+      "id": 14,
+      "name": "Gabeto",
+      "checked": false
+    },
+    {
+      "id": 15,
+      "name": "Oregano",
+      "checked": false
+    },
+    {
+      "id": 16,
+      "name": "Toro Steak House",
+      "checked": false
+    },
+    {
+      "id": 17,
+      "name": "Yazu Sushi",
+      "checked": false
+    },
+    {
+      "id": 18,
+      "name": "Clearstone Dental",
+      "checked": false
+    },
+    {
+      "id": 19,
+      "name": "iCleanse",
+      "checked": false
+    },
+    {
+      "id": 20,
+      "name": "Confident Smile",
+      "checked": false
+    },
+    {
+      "id": 21,
+      "name": "Eye Centre",
+      "checked": false
+    },
+    {
+      "id": 22,
+      "name": "Spectacle Store",
+      "checked": false
+    },
+    {
+      "id": 23,
+      "name": "Imperial Health",
+      "checked": false
+    },
+    {
+      "id": 24,
+      "name": "Sportytime Recovery",
+      "checked": false
+    },
+    {
+      "id": 25,
+      "name": "Your Physios",
+      "checked": false
+    },
+    {
+      "id": 26,
+      "name": "Re:Mind",
+      "checked": false
+    },
+    {
+      "id": 27,
+      "name": "Leonardo Royal Hotel",
+      "checked": false
+    },
+    {
+      "id": 28,
+      "name": "Milton Hill House",
+      "checked": false
+    },
+    {
+      "id": 29,
+      "name": "Hotel Indigo",
+      "checked": false
+    },
+    {
+      "id": 30,
+      "name": "Aqua Paradise",
+      "checked": false
+    },
+    {
+      "id": 31,
+      "name": "Villa Alexis",
+      "checked": false
+    },
+    {
+      "id": 32,
+      "name": "Ostrich Farm",
+      "checked": false
+    },
+    {
+      "id": 33,
+      "name": "Villa Marina",
+      "checked": false
+    },
+    {
+      "id": 34,
+      "name": "Family Park",
+      "checked": false
+    },
+    {
+      "id": 35,
+      "name": "Opera Theatre",
+      "checked": false
+    },
+    {
+      "id": 36,
+      "name": "Arena Wembley",
+      "checked": false
+    },
+    {
+      "id": 37,
+      "name": "National Stadium",
+      "checked": false
+    },
+    {
+      "id": 38,
+      "name": "Eventim Apollo",
+      "checked": false
+    },
+    {
+      "id": 39,
+      "name": "ExCel Centre",
+      "checked": false
+    },
+    {
+      "id": 40,
+      "name": "Detling Showground",
+      "checked": false
+    },
+    {
+      "id": 41,
+      "name": "Concert Hall",
+      "checked": false
+    },
+    {
+      "id": 42,
+      "name": "Trinity Park",
+      "checked": false
+    },
+    {
+      "id": 43,
+      "name": "Cultural Centre",
+      "checked": false
+    },
+    {
+      "id": 44,
+      "name": "Energy Fitness",
+      "checked": false
+    },
+    {
+      "id": 45,
+      "name": "Bikram Yoga",
+      "checked": false
+    },
+    {
+      "id": 46,
+      "name": "Wick CrossFit",
+      "checked": false
+    },
+    {
+      "id": 47,
+      "name": "Havana Salsa",
+      "checked": false
+    },
+    {
+      "id": 48,
+      "name": "Absolute Studios",
+      "checked": false
+    },
+    {
+      "id": 49,
+      "name": "Nike",
+      "checked": false
+    },
+    {
+      "id": 50,
+      "name": "Adidas",
+      "checked": false
+    },
+    {
+      "id": 51,
+      "name": "Guess",
+      "checked": false
+    },
+    {
+      "id": 52,
+      "name": "Traum",
+      "checked": false
+    },
+    {
+      "id": 53,
+      "name": "Colins",
+      "checked": false
+    },
+    {
+      "id": 54,
+      "name": "LEGO",
+      "checked": false
+    },
+    {
+      "id": 55,
+      "name": "Apple",
+      "checked": false
+    },
+    {
+      "id": 56,
+      "name": "Microsoft",
+      "checked": false
+    },
+    {
+      "id": 57,
+      "name": "Ariel",
+      "checked": false
+    },
+    {
+      "id": 58,
+      "name": "Frosch",
+      "checked": false
+    },
+    {
+      "id": 59,
+      "name": "Biolife",
+      "checked": false
+    },
+    {
+      "id": 60,
+      "name": "Bradex",
+      "checked": false
+    },
+    {
+      "id": 61,
+      "name": "Lotte",
+      "checked": false
+    },
+    {
+      "id": 62,
+      "name": "Trixie",
+      "checked": false
+    },
+    {
+      "id": 63,
+      "name": "Royal Canin",
+      "checked": false
+    },
+    {
+      "id": 64,
+      "name": "ABtoys",
+      "checked": false
+    },
+    {
+      "id": 65,
+      "name": "New Skills Academy",
+      "checked": false
+    },
+    {
+      "id": 66,
+      "name": "Course Gate",
+      "checked": false
+    },
+    {
+      "id": 67,
+      "name": "Alpha Academy",
+      "checked": false
+    },
+    {
+      "id": 68,
+      "name": "One Education",
+      "checked": false
+    },
+    {
+      "id": 69,
+      "name": "Language Academy",
+      "checked": false
+    },
+    {
+      "id": 70,
+      "name": "Business Academy",
+      "checked": false
+    }
+  ]
+}

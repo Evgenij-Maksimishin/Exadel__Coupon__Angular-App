@@ -1,0 +1,72 @@
+<main class="bd-container">
+
+  <p-table
+    [columns]="cols"
+    [value]="deals"
+    styleClass="p-datatable-responsive-demo"
+    [paginator]="false"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    selectionMode="multiple"  
+  >
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        {{ 'orders.name' | translate:locale.language }}
+      </th>
+      <th class="order__date">
+        <div class="date__wrapper">
+          <div class="date__header">
+            {{ 'orders.orderDate' | translate:locale.language }}
+          </div>
+          <button type="button" (click)="sortByOrderDate()" [title]=" 'orders.sortByOrderDate' | translate:locale.language">
+            <i *ngIf="!sortByOrderDateClick" class="pi pi-sort-amount-down-alt"></i>
+            <i *ngIf="sortByOrderDateClick" class="pi pi-sort-amount-up"></i>
+          </button>
+        </div>
+      </th>
+      <th class="order__endDate">
+        <div class="date__wrapper">
+          <div class="date__header">        
+            {{ 'orders.endDate' | translate:locale.language }}
+          </div>
+          <button type="button" (click)="sortByEndDate()" [title]=" 'orders.sortByEndDate' | translate:locale.language">
+            <i *ngIf="!sortByEndDateClick" class="pi pi-sort-amount-down-alt"></i>
+            <i *ngIf="sortByEndDateClick" class="pi pi-sort-amount-up"></i>
+          </button>
+        </div>
+      </th>
+      <th class="order__vendor">
+        {{ 'orders.vendor' | translate:locale.language }}
+      </th>
+      <th class="order__location">
+        {{ 'orders.locations' | translate:locale.language }}
+      </th>
+    </tr>
+  </ng-template>
+    
+
+    <ng-template pTemplate="body" let-deal>
+      <tr>
+        <td>
+          <a [routerLink]="['/deal', deal.id]">{{ deal.description }}</a>
+        </td>
+        <td>
+          {{ deal.gettingDate | date: 'mediumDate' }}
+        </td>
+        <td class="order__endDate">
+          {{ deal.dateEnd | date: 'mediumDate' }}
+        </td>
+        <td class="order__vendor">
+          {{ deal.vendorShortResponse.name }}
+        </td>
+        <td class="order__location">
+          <p *ngFor="let location of deal.locations" class="location-item">
+            {{ location.countryName }}, {{ location.cityName }}
+          </p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</main>

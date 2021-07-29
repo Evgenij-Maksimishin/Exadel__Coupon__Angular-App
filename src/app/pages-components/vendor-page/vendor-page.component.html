@@ -1,0 +1,30 @@
+<section class="section__vendor-page">
+  <div class="vendor-page__content bd-container">
+    <div class="vendor-page__main-information">
+      <div class="vendor-page__about-vendor">
+        <div class="about-vendor__logo">
+          <!--<img class="vendor__logo" src="{{ vendor.image }}" alt="logo" />-->
+          <h2 class="about-vendor__name">{{ vendor.name }}</h2>
+        </div>
+        <p-tabView>
+          <p-tabPanel leftIcon="pi pi-info-circle" header="About vendor">
+            <div class="panel-content">{{ vendor.description }}</div>
+          </p-tabPanel>
+          <p-tabPanel leftIcon="pi pi-phone" header="Contacts">
+            <div class="panel-content">
+              <p>Phone number: {{ vendor.phoneNumber }}</p>
+              <p>E-mail: {{ vendor.email }}</p>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel leftIcon="pi pi-th-large" header="Vendor's propositions">
+            <div class="panel-content">
+              <div class="vendor-page__proposition">
+                <app-deal-gallery></app-deal-gallery>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+</section>

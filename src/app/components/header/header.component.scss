@@ -1,0 +1,141 @@
+@import '../../../scss/vars';
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+:host ::ng-deep .p-menu-overlay {
+  left: 83.5%;
+}
+
+.header-line {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 15px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0 0 10px 10px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  height: 3rem;
+
+  img {
+    height: 3rem;
+  }
+}
+
+.user-picture {
+  margin: auto 0 auto auto;
+  cursor: pointer;
+  height: 3rem;
+}
+
+@media (max-width: 590px) {
+  .header__search-bar {
+    height: 2.5rem;
+  }
+  .logo {
+    height: 2.2rem;
+  
+    img {
+      height: 2.2rem;
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  :host ::ng-deep .p-menu-overlay {
+    left: 81.5% !important;
+    width: 12rem;
+  }
+}
+
+@media (max-width: 1088px) {
+  :host ::ng-deep .p-menu-overlay {
+    left: 75.5% !important;
+    width: 24%;
+  }
+}
+
+@media (max-width: 800px) {
+  :host ::ng-deep .p-menu-overlay {
+    left: 75.5% !important;
+    width: 24%;
+  }
+}
+
+@media (max-width: 635px) {
+  :host ::ng-deep .p-menu-overlay {
+    left: 42.5% !important;
+    top: 81% !important;
+    width: 57%;
+  }
+}
+
+@media (max-width: 450px) {
+  .header__search-bar {
+    height: 2.5rem;
+    margin-left: 20px;
+  }
+
+  .logo {
+    height: 2.2rem;
+    img {
+      height: 2.2rem;
+    }
+  }
+
+  .p-avatar.p-avatar-lg {
+    height: 1.2rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+@media (max-width: 410px) {
+  .header-line {
+    display: flex;
+  }
+
+  :host ::ng-deep .p-menu-overlay {
+    left: 42.5% !important;
+    top: 81% !important;
+    width: 57%;
+  }
+
+  .p-inputtext {
+    font-size: 0.1rem !important;
+  }
+
+  .header__search-bar {
+    font-size: 0.1rem !important;
+  }
+  app-search-bar {
+    font-size: 0.1rem !important;
+    width: 75%;
+  }
+
+  .p-input-icon-left > i, .p-input-icon-right > i {
+    font-size: 13px !important;
+    top: 1.3rem !important;
+  }
+  
+  .logo {
+    display: none;
+  }
+
+  .p-avatar.p-avatar-lg {
+    height: 1.0rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}

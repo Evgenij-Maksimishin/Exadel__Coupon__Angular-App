@@ -1,0 +1,12 @@
+@import '../../../scss/vars';
+
+h2 {
+  padding: 1rem 0;
+}
+
+.deal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  justify-content: space-between;
+  gap: 2rem 0.625rem;
+}

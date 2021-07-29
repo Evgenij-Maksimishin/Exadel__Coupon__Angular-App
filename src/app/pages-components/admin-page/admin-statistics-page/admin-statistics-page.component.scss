@@ -1,0 +1,46 @@
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.calendar-and-download {
+  display: flex;
+  justify-content: flex-end;
+  .calendar {
+    margin-right: 22.5rem;
+  }
+}
+
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: -1rem;
+}
+
+.chart {
+  height: 510px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  margin: 1rem;
+  text-align: center;
+  padding-top: 0.5rem;
+
+  h2 {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  .no-statistics {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #d32f2f;
+  }
+}

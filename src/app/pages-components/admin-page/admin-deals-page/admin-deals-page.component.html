@@ -1,0 +1,329 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-table
+    #dt
+    [value]="deals"
+    [lazy]="!searchingMode"
+    (onLazyLoad)="loadCustomers($event)"
+    [paginator]="!searchingMode"
+    [rows]="10"
+    [totalRecords]="totalRecords"
+    [(selection)]="selectedDeals"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="{{
+      'admin.dealPage.pageReport'
+        | translate
+          : locale.language
+          : {
+              first: '{first}',
+              last: '{last}',
+              totalRecords: '{totalRecords}'
+            }
+    }}"
+    [showCurrentPageReport]="!searchingMode"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">{{ 'admin.manageDeals' | translate: locale.language }}</h5>
+        <div>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              placeholder="{{ 'admin.search' | translate: locale.language }}"
+              (input)="onSearchChange($event)"
+            />
+          </span>
+          <button
+              pButton
+              pRipple
+              icon="pi pi-plus"
+              title="{{ 'admin.dealPage.addNewDealTitle' | translate: locale.language }}"
+              class="p-button-rounded p-button-success p-mr-2 add-btn"
+              (click)="openNew()"
+          ></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem"></th>
+        <th>{{ 'admin.dealPage.description' | translate: locale.language }}</th>
+        <th>{{ 'admin.dealPage.begin' | translate: locale.language }}</th>
+        <th>{{ 'admin.dealPage.end' | translate: locale.language }}</th>
+        <th>{{ 'admin.dealPage.vendor' | translate: locale.language }}</th>
+        <th>{{ 'admin.dealPage.category' | translate: locale.language }}</th>
+        <!-- <th>{{ 'admin.dealPage.locations' | translate: locale.language }}</th> -->
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-deal>
+      <tr>
+        <td>
+          <a
+            title="{{ 'admin.dealPage.toDealTitle' | translate: locale.language }}"
+            pButton
+            pRipple
+            icon="pi pi-id-card"
+            class="p-button-rounded p-button-success p-mr-2"
+            [routerLink]="['/deal', deal.id]"
+          ></a>
+        </td>
+        <td>{{ deal.description }}</td>
+        <td>{{ deal.dateBegin | date: 'MMMM d, y' }}</td>
+        <td>{{ deal.dateEnd | date: 'MMMM d, y' }}</td>
+        <td>{{ deal.vendorName }}</td>
+        <td>{{ deal.categoryName }}</td>
+        <!-- <td>
+          <div *ngFor="let location of deal.locations">
+            <p>{{ location.city.countryName }}</p>
+          </div>
+        </td> -->
+        <td>
+          <div class="btns" *ngIf="deal.status === 'NEW'; else published">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success p-mr-2"
+              (click)="editDeal(deal)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+              (click)="deleteDeal(deal)"
+            ></button>
+          </div>
+          <ng-template #published>
+            <p>{{ 'admin.dealPage.published' | translate: locale.language }}</p>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  [(visible)]="dealDialog"
+  [style]="{width: '450px'}"
+  header="{{ 'admin.dealPage.dealDetails' | translate: locale.language }} "
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="description"
+        >{{ 'admin.dealPage.shortDescription' | translate: locale.language
+        }}<span class="required-warning" *ngIf="!deal.description"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <textarea
+        id="description"
+        name="description"
+        pInputTextarea
+        required
+        rows="2"
+        cols="20"
+        accept-charset="utf-8"
+        (change)="deal.description = deal.description.trim()"
+        minlength="15"
+        maxlength="150"
+        pattern=".{15,150}"
+        [(ngModel)]="deal.description"
+        ngModel
+        #description="ngModel"
+        autofocus
+      ></textarea>
+      <div *ngIf="description.errors && (description.touched || description.dirty)" class="invalid">
+        <div [hidden]="!description.errors?.pattern">
+          {{ 'admin.dealPage.validation.description' | translate: locale.language }}
+        </div>
+      </div>
+    </div>
+    <div class="p-field">
+      <label for="fullDescription"
+        >{{ 'admin.dealPage.fullDescription' | translate: locale.language
+        }}<span class="required-warning" *ngIf="!deal.fullDescription"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <textarea
+        id="fullDescription"
+        name="fullDescription"
+        pInputTextarea
+        required
+        rows="4"
+        cols="20"
+        accept-charset="utf-8"
+        (change)="deal.fullDescription = deal.fullDescription.trim()"
+        minlength="15"
+        maxlength="800"
+        pattern=".{15,800}"
+        ngModel
+        #fullDescription="ngModel"
+        [(ngModel)]="deal.fullDescription"
+      ></textarea>
+      <div
+        *ngIf="fullDescription.errors && (description.touched || fullDescription.dirty)"
+        class="invalid"
+      >
+        <div [hidden]="!fullDescription.errors?.pattern">
+          {{ 'admin.dealPage.validation.fullDescription' | translate: locale.language }}
+        </div>
+      </div>
+    </div>
+    <div class="p-field">
+      <label for="vendors_dropdown"
+        >{{ 'admin.dealPage.vendor' | translate: locale.language
+        }}<span class="required-warning" *ngIf="!deal.vendorName"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <p-listbox
+        id="vendors_dropdown"
+        [options]="this.vendors"
+        optionLabel="name"
+        [(ngModel)]="deal.vendorName"
+        (onChange)="vendorChanged($event.value)"
+        [listStyle]="{'max-height': '5rem'}"
+        [filter]="true"
+      ></p-listbox>
+    </div>
+    <div class="p-field" *ngFor="let address of vendor_address; let i = index">
+      <label for="location_id"
+        >{{ 'admin.dealPage.location' | translate: locale.language }} {{ i + 1 }}:</label
+      >
+      <p class="location_info" id="location_id">
+        {{
+          vendor_address[i].city.countryName +
+            ', ' +
+            vendor_address[i].city.name +
+            ', ' +
+            vendor_address[i].street +
+            ', ' +
+            vendor_address[i].number
+        }}
+      </p>
+    </div>
+    <div class="p-field">
+      <label for="categories_dropdown"
+        >{{ 'admin.dealPage.category' | translate: locale.language }}
+        <span class="required-warning" *ngIf="!deal.categoryName"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <p-dropdown
+        id="categories_dropdown"
+        [options]="this.categories"
+        optionLabel="name"
+        [(ngModel)]="deal.categoryName"
+        placeholder="Select category"
+        [virtualScroll]="true"
+        (onChange)="categoryChanged($event.value)"
+      ></p-dropdown>
+    </div>
+    <label for="tags"
+      >{{ 'admin.dealPage.tags' | translate: locale.language
+      }}<span class="required-warning" *ngIf="selectedTags.length === 0"
+        >*{{ 'admin.dealPage.tagsRequired' | translate: locale.language }}</span
+      ></label
+    >
+    <div class="input-tags-flex p-field">
+      <div class="tag-item" *ngFor="let tag of deal.tagsId">
+        <p-tag
+          [severity]="selectedTags.includes(tag.id) ? success : danger"
+          styleClass="p-mr-2"
+          id="{{ tag.id + 'tag' }}"
+          value="{{ tag.name }}"
+          [rounded]="true"
+          (click)="tagChanged($event, tag.id)"
+        ></p-tag>
+      </div>
+    </div>
+    <div class="p-field">
+      <label for="dateBegin"
+        >{{ 'admin.dealPage.begin' | translate: locale.language
+        }}<span class="required-warning" *ngIf="!deal.dateBegin"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <p-calendar
+        id="dateBegin"
+        [(ngModel)]="deal.dateBegin"
+        dateFormat="M.dd.yy"
+        [showTime]="true"
+      ></p-calendar>
+    </div>
+    <div class="p-field">
+      <label for="dateEnd"
+        >{{ 'admin.dealPage.end' | translate: locale.language
+        }}<span class="required-warning" *ngIf="!deal.dateEnd"
+          >*{{ 'admin.dealPage.required' | translate: locale.language }}</span
+        ></label
+      >
+      <p-calendar
+        id="dateEnd"
+        [(ngModel)]="deal.dateEnd"
+        [showTime]="true"
+        dateFormat="M.dd.yy"
+      ></p-calendar>
+      <span class="required-warning" *ngIf="deal.dateBegin >= deal.dateEnd">{{
+        'admin.dealPage.dataValidation' | translate: locale.language
+      }}</span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="{{ 'admin.dealPage.cancel' | translate: locale.language }}"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="{{ 'admin.dealPage.save' | translate: locale.language }}"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveDeal('NEW')"
+      [disabled]="
+        !this.deal.description ||
+        !this.deal.fullDescription ||
+        !this.deal.vendorName ||
+        !this.deal.categoryName ||
+        !deal.dateBegin ||
+        !deal.dateEnd ||
+        selectedTags.length === 0 ||
+        deal.dateBegin >= deal.dateEnd
+      "
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="{{ 'admin.dealPage.publishLabel' | translate: locale.language }}"
+      icon="pi pi-send"
+      class="p-button-text"
+      (click)="publishDeal(deal.id)"
+      [disabled]="
+        !this.deal.description ||
+        !this.deal.fullDescription ||
+        !this.deal.vendorName ||
+        !this.deal.categoryName ||
+        !deal.dateBegin ||
+        !deal.dateEnd ||
+        selectedTags.length === 0 ||
+        deal.dateBegin >= deal.dateEnd
+      "
+    ></button>
+  </ng-template>
+</p-dialog>
+<!-- <p>{{this.log | json}}</p> -->
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

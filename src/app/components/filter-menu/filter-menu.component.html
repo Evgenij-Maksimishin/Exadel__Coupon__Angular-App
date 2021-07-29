@@ -1,0 +1,55 @@
+<p-accordion [multiple]="true">
+  <p-accordionTab header="{{ 'filters.location' | translate:locale.language }}">
+    <p-listbox
+      [options]="locations"
+      [(ngModel)]="selectedLocation"
+      [metaKeySelection]="false"
+      [filter]="true"
+      optionLabel="name"
+      optionDisabled="disabled"
+      [listStyle]="{'max-height': '15rem'}"
+      (onChange)="handleLocationSelect()"
+    >
+    </p-listbox>
+  </p-accordionTab>
+  <p-accordionTab header="{{ 'filters.categories' | translate:locale.language }}">
+    <p-listbox
+      [options]="categories"
+      [(ngModel)]="selectedCategory"
+      [metaKeySelection]="false"
+      [filter]="true"
+      optionLabel="name"
+      [listStyle]="{'max-height': '15rem'}"
+      (onChange)="handleCategorySelect()"
+    >
+    </p-listbox>
+  </p-accordionTab>
+  <p-accordionTab header="{{ 'filters.tags' | translate:locale.language }}">
+    <p-listbox
+      [options]="tags"
+      [(ngModel)]="selectedTags"
+      [metaKeySelection]="false"
+      [checkbox]="true"
+      [filter]="true"
+      [multiple]="true"
+      optionLabel="name"
+      [listStyle]="{'max-height': '15rem'}"
+      (onChange)="this.filtersChanged.emit()"
+    >
+    </p-listbox>
+  </p-accordionTab>
+  <p-accordionTab header="{{ 'filters.vendors' | translate:locale.language }}">
+    <p-listbox
+      [options]="vendors"
+      [(ngModel)]="selectedVendors"
+      [metaKeySelection]="false"
+      [checkbox]="true"
+      [filter]="true"
+      [multiple]="true"
+      optionLabel="name"
+      [listStyle]="{'max-height': '15rem'}"
+      (onChange)="this.filtersChanged.emit()"
+    >
+    </p-listbox>
+  </p-accordionTab>
+</p-accordion>

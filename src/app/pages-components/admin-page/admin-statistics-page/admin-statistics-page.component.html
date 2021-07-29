@@ -1,0 +1,114 @@
+<p-toast></p-toast>
+
+<div class="p-field p-col-12 p-md-4 calendar-container">
+  <div class="calendar-and-download">
+    <div class="calendar">
+      <p-calendar
+        [(ngModel)]="rangeDates"
+        selectionMode="range"
+        #calendar
+        pTooltip="{{ 'admin.statistics.click' | translate: locale.language }}"
+        tooltipPosition="bottom"
+        [readonlyInput]="true"
+        [maxDate]="todayDate"
+        inputId="range"
+        [style]="{width: '15rem'}"
+        [showIcon]="true"
+        dateFormat="dd/mm/yy"
+        [firstDayOfWeek]="1"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        yearRange="2020:2030"
+        (onSelect)="onSelect()"
+        (onClose)="handleDatesSelect()"
+      ></p-calendar>
+    </div>
+    <div class="download-button">
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-download"
+        class="p-button-rounded"
+        pTooltip="{{ 'admin.statistics.download' | translate: locale.language }}"
+        tooltipPosition="bottom"
+        (click)="download()"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<div class="charts-container">
+  <div class="chart">
+    <h2>{{ 'admin.statistics.viewedDeals' | translate: locale.language }}</h2>
+    <p class="no-statistics" *ngIf="dealPageViews.length === 0">
+      {{ 'admin.statistics.noStatisticsOne' | translate: locale.language }} <br />
+      {{ 'admin.statistics.noStatisticsTwo' | translate: locale.language }}
+    </p>
+    <ngx-charts-bar-vertical
+      [results]="dealPageViews"
+      [view]="[323, 300]"
+      [scheme]="colorSchemeOne"
+      [xAxis]="false"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [yAxisLabel]="views"
+      [legend]="true"
+      [legendTitle]="deals"
+      [legendPosition]="legendPosition"
+      [animations]="true"
+      [showGridLines]="true"
+      [showDataLabel]="true"
+      [roundEdges]="true"
+    ></ngx-charts-bar-vertical>
+  </div>
+  <div class="chart">
+    <h2>{{ 'admin.statistics.orderedDeals' | translate: locale.language }}</h2>
+    <p class="no-statistics" *ngIf="dealCouponOrders.length === 0">
+      {{ 'admin.statistics.noStatisticsOne' | translate: locale.language }} <br />
+      {{ 'admin.statistics.noStatisticsTwo' | translate: locale.language }}
+    </p>
+    <ngx-charts-bar-vertical
+      [results]="dealCouponOrders"
+      [view]="[323, 300]"
+      [scheme]="colorSchemeTwo"
+      [xAxis]="false"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [yAxisLabel]="buys"
+      [legend]="true"
+      [legendTitle]="deals"
+      [legendPosition]="legendPosition"
+      [animations]="true"
+      [showGridLines]="true"
+      [showDataLabel]="true"
+      [roundEdges]="true"
+    ></ngx-charts-bar-vertical>
+  </div>
+  <div class="chart">
+    <h2>{{ 'admin.statistics.favoredDeals' | translate: locale.language }}</h2>
+    <p class="no-statistics" *ngIf="dealsAddedToFavorites.length === 0">
+      {{ 'admin.statistics.noStatisticsOne' | translate: locale.language }} <br />
+      {{ 'admin.statistics.noStatisticsTwo' | translate: locale.language }}
+    </p>
+    <ngx-charts-bar-vertical
+      [results]="dealsAddedToFavorites"
+      [view]="[323, 300]"
+      [scheme]="colorSchemeThree"
+      [xAxis]="false"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [yAxisLabel]="favorites"
+      [legend]="true"
+      [legendTitle]="deals"
+      [legendPosition]="legendPosition"
+      [animations]="true"
+      [showGridLines]="true"
+      [showDataLabel]="true"
+      [roundEdges]="true"
+    ></ngx-charts-bar-vertical>
+  </div>
+</div>

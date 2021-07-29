@@ -1,0 +1,44 @@
+<main class="bd-container">
+  <div class="admin-page">
+    <div class="admin-sidebar">
+      <button
+        pButton
+        type="button"
+        label="{{ 'admin.nav.deals' | translate: locale.language }}"
+        [routerLink]="['/admin/deals']"
+        icon="pi pi-wallet"
+        iconPos="left"
+        [ngClass]="{active: router.url === '/admin/deals'}"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="{{ 'admin.nav.vendors' | translate: locale.language }}"
+        [routerLink]="['/admin/vendors']"
+        icon="pi pi-briefcase"
+        iconPos="left"
+        [ngClass]="{active: router.url === '/admin/vendors'}"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="{{ 'admin.nav.categories' | translate: locale.language }}"
+        [routerLink]="['/admin/categories']"
+        icon="pi pi-tag"
+        iconPos="left"
+        [ngClass]="{active: router.url === '/admin/categories'}"
+      ></button>
+      <button
+        *ngIf="isAdmin"
+        pButton
+        type="button"
+        label="{{ 'admin.nav.statistics' | translate: locale.language }}"
+        [routerLink]="['/admin/statistics']"
+        icon="pi pi-chart-line"
+        iconPos="left"
+        [ngClass]="{active: router.url === '/admin/statistics'}"
+      ></button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</main>

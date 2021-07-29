@@ -1,0 +1,48 @@
+.deal-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+app-deal-card {
+  width: 22%;
+  margin-top: 1rem;
+  display: flex;
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 1150px) {
+  app-deal-card {
+    width: 26%;
+  }
+}
+
+@media (max-width: 974px) {
+  app-deal-card {
+    width: 31%;
+  }
+}
+
+@media (max-width: 843px) {
+  app-deal-card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 662px) {
+  app-deal-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 586px) {
+  app-deal-card {
+    width: 100%;
+    text-align: center;
+  }
+
+  .short-description {
+    width: 100% !important;
+    text-align: center;
+  }
+}

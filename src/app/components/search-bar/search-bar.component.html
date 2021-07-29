@@ -1,0 +1,21 @@
+<span class="p-input-icon-left" #search>
+  <i class="pi pi-search"></i>
+  <input
+    class="p-inputtext"
+    type="text"
+    pInputText
+    [(ngModel)]="searchText"
+    (ngModelChange)="onSearch($event)"
+    placeholder="{{ 'header.search' | translate: locale.language }}"
+  />
+</span>
+<p-menu
+  [showTransitionOptions]="'.12s cubic-bezier(0, 0, 0.2, 1)'"
+  [hideTransitionOptions]="'.12s cubic-bezier(0, 0, 0.2, 1)'"
+  #searchMenu
+  [popup]="true"
+  [model]="searchItems"
+  [appendTo]="search"
+  [baseZIndex]="10000"
+>
+</p-menu>

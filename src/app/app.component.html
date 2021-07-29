@@ -1,0 +1,5 @@
+<app-header *ngIf="authService.isLoggedIn()"></app-header>
+<router-outlet></router-outlet>
+<ng-container  *ngIf="!noFooterPages.includes(router.url)">
+   <app-footer *ngIf="authService.isLoggedIn()"></app-footer>
+</ng-container>

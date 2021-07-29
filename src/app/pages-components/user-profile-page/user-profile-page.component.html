@@ -1,0 +1,63 @@
+<div class="bd-container">
+  <div class="profile-container">
+    <div class="user-picture">
+      <span class="pi pi-user user-icon"></span>
+    </div>
+    <!-- <img [src]="url" alt="" class="user-picture" /> -->
+    <div class="credentials">
+      <p><i class="far fa-address-card"></i> {{ user.firstName }} {{ user.lastName }}</p>
+      <p><i class="far fa-envelope"></i> {{ user.email }}</p>
+      <p>
+        <i class="fas fa-map-marked-alt"></i> {{ user.location.city.name }},
+        {{ user.location.city.countryName }}
+      </p>
+    </div>
+  </div>
+  <div class="profile-container subscriptions">
+    <h2>{{ 'subscriptions.subscriptions' | translate: locale.language }}</h2>
+    <div class="user-subscriptions">
+      <div class="subscription-item">
+        <h3>{{ 'subscriptions.vendors' | translate: locale.language }}</h3>
+        <p-multiSelect
+          [options]="vendors"
+          [(ngModel)]="selectedVendors"
+          defaultLabel="{{ 'subscriptions.selectVendor' | translate: locale.language }}"
+          [showToggleAll]="false"
+          optionLabel="subscriberName"
+          [maxSelectedLabels]="0"
+          [selectedItemsLabel]="selectedItems"
+          [style]="{minWidth: '15rem'}"
+          (onChange)="handleVendorSelect($event)"
+        ></p-multiSelect>
+      </div>
+      <div class="subscription-item">
+        <h3>{{ 'subscriptions.categories' | translate: locale.language }}</h3>
+        <p-multiSelect
+          [options]="categories"
+          [(ngModel)]="selectedCategories"
+          defaultLabel="{{ 'subscriptions.selectCategory' | translate: locale.language }}"
+          [showToggleAll]="false"
+          optionLabel="subscriberName"
+          [maxSelectedLabels]="0"
+          [selectedItemsLabel]="selectedItems"
+          [style]="{minWidth: '15rem'}"
+          (onChange)="handleCategorySelect($event)"
+        ></p-multiSelect>
+      </div>
+      <div class="subscription-item">
+        <h3>{{ 'subscriptions.tags' | translate: locale.language }}</h3>
+        <p-multiSelect
+          [options]="tags"
+          [(ngModel)]="selectedTags"
+          defaultLabel="{{ 'subscriptions.selectTag' | translate: locale.language }}"
+          [showToggleAll]="false"
+          optionLabel="subscriberName"
+          [maxSelectedLabels]="0"
+          [selectedItemsLabel]="selectedItems"
+          [style]="{minWidth: '15rem'}"
+          (onChange)="handleTagSelect($event)"
+        ></p-multiSelect>
+      </div>
+    </div>
+  </div>
+</div>

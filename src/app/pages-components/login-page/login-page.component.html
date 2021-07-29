@@ -1,0 +1,59 @@
+<div class="login-page bd-container">
+  <div class="login-container">
+    <div class="login-page__logo">
+      <a>
+        <img src="/assets/images/logo-transparent.png" alt="logo" />
+      </a>
+    </div>
+    <div class="login-page__block">
+      <h1>{{ 'login.login' | translate: locale.language }}</h1>
+
+      <div class="login-page__form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="login-page__field-email">
+            <span class="p-float-label login-page__input">
+              <input
+                formControlName="email"
+                email
+                id="float-input"
+                type="email"
+                pInputText
+                name="email"
+                [ngClass]="{'is-invalid': submitted && f.email.errors}"
+              />
+              <label for="float-input">{{ 'login.email' | translate: locale.language }}</label>
+            </span>
+          </div>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div class="invalid-feedback__email" *ngIf="f.email.errors.required">
+              {{ 'login.emailRequired' | translate: locale.language }}
+            </div>
+          </div>
+
+          <div class="login-page__field-password">
+            <span class="p-float-label login-page__input">
+              <input
+                formControlName="password"
+                password
+                pInputText
+                id="float-pass"
+                type="password"
+                name="password"
+                [ngClass]="{'is-invalid': submitted && f.password.errors}"
+              />
+              <label for="float-pass">{{ 'login.password' | translate: locale.language }}</label>
+            </span>
+          </div>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">
+              {{ 'login.passwordRequired' | translate: locale.language }}
+            </div>
+          </div>
+
+          <button pButton class="login-button" label="Enter" type="submit"></button>
+          <div *ngIf="error" class="error">{{ error }}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

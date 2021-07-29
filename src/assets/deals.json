@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "vendorId": 25,
+        "shortDescription": "15% off for one pizza with a softdrink",
+        "locations": {
+          "countryName": "Belarus",
+          "cityName": "Minsk"
+        },
+        "vendor": "Pizzeria Oregano",
+        "dateBegin": "Jun 03, 2021"
+      },
+
+      {
+        "id": 2,
+        "vendorId": 15,
+        "shortDescription": "15% off for one pizza with a softdrink",
+        "locations": {
+          "countryName": "Belarus",
+          "cityName": "Minsk"
+        },
+        "vendor": "Pizzeria Oregano",
+        "dateBegin": "Jun 03, 2021"
+      },
+
+      {
+        "id": 3,
+        "vendorId": 35,
+        "shortDescription": "15% off for one pizza with a softdrink",
+        "locations": {
+          "countryName": "Belarus",
+          "cityName": "Minsk"
+        },
+        "vendor": "Pizzeria Oregano",
+        "dateBegin": "Jun 03, 2021"
+      }
+]

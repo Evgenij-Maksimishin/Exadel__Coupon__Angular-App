@@ -1,0 +1,316 @@
+<p-toast></p-toast>
+
+<p-table
+  #dt
+  [value]="vendors"
+  [rows]="10"
+  [paginator]="true"
+  [globalFilterFields]="['name']"
+  [rowHover]="true"
+  dataKey="id"
+  currentPageReportTemplate="{{
+    'admin.vendorPage.pageReport'
+      | translate
+        : locale.language
+        : {
+            first: '{first}',
+            last: '{last}',
+            totalRecords: '{totalRecords}'
+          }
+  }}"
+  [showCurrentPageReport]="true"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <h5 class="p-m-0">{{ 'admin.manageVendors' | translate: locale.language }}</h5>
+      <div>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="applyFilterGlobal($event, 'contains')"
+            placeholder="{{ 'admin.search' | translate: locale.language }}"
+          />
+        </span>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-plus"
+          pTooltip="{{ 'admin.vendorPage.addNew' | translate: locale.language }}"
+          tooltipPosition="bottom"
+          class="p-button-rounded p-button-success p-mr-2 add-btn"
+          (click)="openNew()"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">
+        {{ 'admin.vendorPage.name' | translate: locale.language }}
+        <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th>
+        {{ 'admin.vendorPage.number' | translate: locale.language }}
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-vendor>
+    <tr>
+      <td>{{ vendor.name }}</td>
+      <td>{{ vendor.eventCount }}</td>
+      <td class="btns">
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          pTooltip="{{ 'admin.vendorPage.edit' | translate: locale.language }}"
+          tooltipPosition="bottom"
+          id="{{ vendor.id }}"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editVendor($event)"
+        ></button>
+        <button
+          *ngIf="!vendor.eventCount"
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          pTooltip="{{ 'admin.vendorPage.delete' | translate: locale.language }}"
+          tooltipPosition="bottom"
+          class="p-button-rounded p-button-danger p-mr-2"
+          (click)="deleteVendor(vendor)"
+        ></button>
+        <div
+            pTooltip= "{{ 'admin.vendorPage.disabledDelete' | translate: locale.language }}"
+            tooltipPosition="bottom">
+        <button
+          *ngIf="vendor.eventCount"
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-danger p-mr-2"
+          disabled
+        ></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="vendorDialog"
+  [style]="{width: '550px'}"
+  header="{{ 'admin.vendorPage.vendorDetails' | translate: locale.language }}"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+      <div class="p-field">
+        <label for="name"
+          >{{ 'admin.vendorPage.name' | translate: locale.language }}
+          <span class="required-warning" *ngIf="!vendor.name">{{
+            'admin.vendorPage.required' | translate: locale.language
+          }}</span></label
+        >
+        <input
+          type="text"
+          pInputText
+          id="name"
+          name="name"
+          accept-charset="utf-8"
+          ngModel
+          #name="ngModel"
+          pattern=".{2,80}"
+          [(ngModel)]="vendor.name"
+          (change)="vendor.name = vendor.name.trim()"
+          maxlength="80"
+          minlength="2"
+          placeholder="{{ 'admin.vendorPage.placeholders.name' | translate: locale.language }}"
+          ng-model-options="{ updateOn: 'blur' }"
+          required
+          autofocus
+        />
+        <div *ngIf="name.errors && name.touched" class="invalid">
+          <div [hidden]="!name.errors?.pattern" class="invalid__message">
+            {{ 'admin.vendorPage.validation.name' | translate: locale.language }}
+          </div>
+        </div>
+      </div>
+                 <div class="loc-header">
+        <h3 for="name">{{ 'admin.vendorPage.locations' | translate: locale.language }}</h3>
+        <p class="required-warning location-required" *ngIf="!locations[0]">
+          {{ 'admin.vendorPage.locationRequirement' | translate: locale.language }}
+        </p>
+      </div>
+      <div class="p-field" *ngFor="let item of locations; let i = index">
+        <label class="location-label"
+          >{{ 'admin.vendorPage.location' | translate: locale.language }} {{ i + 1 }}</label
+        >
+        <div class="location">
+          <div class="loc_input">
+            <div *ngIf="item.id">
+              <p>{{ item.city?.countryName }}, {{ item.city?.name }}</p>
+              <p>{{ item.street }} {{ item.number }}</p>
+            </div>
+            <div *ngIf="!item.id" class="location__address">
+              <input
+                ngx-google-places-autocomplete
+                [options]="options"
+                (onAddressChange)="handleAddressChange($event, item)"
+                pInputText
+                placeholder="{{
+                  'admin.vendorPage.placeholders.addStreet' | translate: locale.language
+                }}"
+              />
+            </div>
+          </div>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            title="{{ 'admin.vendorPage.removeLocation' | translate: locale.language }}"
+            class="p-button-rounded p-button-danger p-mr-2"
+            (click)="deleteLocation(i)"
+          ></button>
+        </div>
+      </div>
+      <div class="location__add-btn">
+        <button
+          pButton
+          pRipple
+          icon="pi pi-plus"
+          title="{{ 'admin.vendorPage.addLocation' | translate: locale.language }}"
+          class="p-button-rounded p-button-success p-mr-2 btn"
+          (click)="addLocation()"
+        ></button>
+        <span class="add-location-label">{{
+          'admin.vendorPage.addLocation' | translate: locale.language
+        }}</span>
+      </div>
+      <div class="p-field">
+        <label for="email"
+          >E-mail
+          <span class="required-warning" *ngIf="!vendor.email">{{
+            'admin.vendorPage.required' | translate: locale.language
+          }}</span></label
+        >
+        <input
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          type="text"
+          pInputText
+          id="email"
+          name="email"
+          (change)="vendor.email = vendor.email.trim()"
+          ngModel
+          #email="ngModel"
+          [(ngModel)]="vendor.email"
+          placeholder="user@mailservice.com"
+          ng-model-options="{ updateOn: 'blur' }"
+          required
+        />
+        <div *ngIf="email.errors && email.touched" class="invalid">
+          <div [hidden]="!email.errors?.pattern">
+            {{ 'admin.vendorPage.validation.email' | translate: locale.language }}
+          </div>
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="phoneNumber"
+          >{{ 'admin.vendorPage.phoneNumber' | translate: locale.language }}
+          <span class="required-warning" *ngIf="!vendor.phoneNumber">{{
+            'admin.vendorPage.required' | translate: locale.language
+          }}</span></label
+        >
+        <input
+          type="number"
+          pInputText
+          pattern=".{11,18}"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="+380675208967"
+          ngModel
+          #phoneNumber="ngModel"
+          [(ngModel)]="vendor.phoneNumber"
+          required
+          ng-model-options="{ updateOn: 'blur' }"
+        />
+        <div
+          *ngIf="phoneNumber.errors && phoneNumber.touched"
+          class="invalid"
+        >
+          <div [hidden]="!phoneNumber.errors?.pattern">
+            {{ 'admin.vendorPage.validation.phone' | translate: locale.language }}
+          </div>
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="description"
+          >{{ 'admin.vendorPage.description' | translate: locale.language }}
+          <span class="required-warning" *ngIf="!vendor.description">{{
+            'admin.vendorPage.required' | translate: locale.language
+          }}</span></label
+        >
+        <textarea
+          type="text"
+          pInputTextarea
+          id="description"
+          name="description"
+          accept-charset="utf-8"
+          placeholder="{{
+            'admin.vendorPage.placeholders.description' | translate: locale.language
+          }}"
+          pattern=".{10,255}"
+          ngModel
+          #description="ngModel"
+          (change)="vendor.description = vendor.description.trim()"
+          minlength="10"
+          maxlength="255"
+          required
+          [(ngModel)]="vendor.description"
+          ng-model-options="{ updateOn: 'blur' }"
+        >
+          {{ vendor.description }}
+        </textarea>
+        <div
+          *ngIf="description.errors && description.touched"
+          class="invalid"
+        >
+          <div [hidden]="!description.errors?.pattern">
+            {{ 'admin.vendorPage.validation.description' | translate: locale.language }}
+          </div>
+        </div>
+      </div>
+      <div class="footer__buttons">
+        <button
+          pButton
+          pRipple
+          label="{{ 'admin.cancel' | translate: locale.language }}"
+          icon="pi pi-times"
+          class="p-button-text"
+          (click)="hideDialog()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="{{ 'admin.save' | translate: locale.language }}"
+          icon="pi pi-check"
+          class="p-button-text"
+          (click)="saveVendor($event)"
+          [disabled]="
+            !this.vendor.name ||
+            !this.vendor.phoneNumber ||
+            !this.vendor.email ||
+            email.invalid ||
+            name.invalid ||
+            phoneNumber.invalid ||
+            description.invalid ||
+            !this.vendor.description ||
+            !locations[0]"
+        ></button>
+      </div>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

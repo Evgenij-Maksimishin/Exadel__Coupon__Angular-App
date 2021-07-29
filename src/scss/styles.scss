@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import './vars';
+@import '~animate.css/animate.min';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  min-height: 100vh;
+  padding-top: 80px;
+  font-family: Lato, sans-serif;
+  color: $main__text-color;
+  background-color: $white__color;
+  background-image: radial-gradient(
+    circle at bottom,
+    #e68fc0,
+    #da8dc9,
+    #ca8cd2,
+    #b78dda,
+    #a08ee0,
+    #7d9dee,
+    #51abf4,
+    #00b7f2,
+    #00cde2,
+    #5cdec4,
+    #a7e9a9,
+    #eaeea0
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.bd-container {
+  max-width: 1280px;
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  // padding: 0 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $main__text-color;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+app-login-page {
+  height: calc(100vh - 10rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-legend .legend-labels {
+  display: flex !important;
+  flex-direction: column !important;
+  background: $primary__background !important;
+  border-radius: 0 !important;
+  backdrop-filter: $default__blur !important;
+}
+
+.chart-legend .legend-wrap {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.chart-legend .legend-title {
+  text-align: center !important;
+  font-weight: 400 !important;
+}
+
+.p-tooltip-text {
+  font-size: 0.875rem !important;
+}
+
+.legend-labels.horizontal-legend {
+  height: 10rem;
+}
+
+.pac-container {
+  z-index: 999999 !important;
+  border-radius: 10px !important;
+}
+
+.p-tabview-nav {
+  flex-wrap: nowrap !important;
+  align-items: center;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  text-align: center;
+  height: 100%;
+}
+
+@media screen and (max-width: 448px) {
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
+
+@media screen and (max-width: 367px) {
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    font-size: 12px;
+  }
+}
+
+

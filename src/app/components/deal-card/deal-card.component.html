@@ -1,0 +1,35 @@
+<div class="deal-card">
+  <a class="deal-card__header" [routerLink]="['/deal', deal.id]">
+    <div class="deal-card__header-info">
+      <p class="short-description">{{ deal.shortDescription }}</p>
+      <p class="category">{{ deal.categoryName }}</p>
+    </div>
+  </a>
+  <button
+    type="button"
+    class="deal-card__like"
+    [ngClass]="{liked: addedToFavorites}"
+    (click)="addToFavorites()"
+  >
+    <i *ngIf="!addedToFavorites" class="far fa-heart" (click)="handleAddToFavorites()"></i>
+    <i *ngIf="addedToFavorites" class="fas fa-heart" (click)="handleRemoveFromFavorites()"></i>
+  </button>
+
+  <div class="deal-card__content">
+    <p class="vendor-name"><i class="fas fa-store-alt"></i> {{ deal.vendorName }}</p>
+    <p class="location-details">
+      <i class="fas fa-map-marker-alt"></i> {{ deal.locations.countryName }},
+      {{ deal.locations.cities[0].cityName }}, <br />
+      <span class="address">
+        {{ deal.locations.cities[0].addresses[0] }}
+        <span *ngIf="deal.locations.cities.length > 1">
+          and {{ deal.locations.cities.length - 1 }} more
+        </span>
+      </span>
+    </p>
+    <p class="deal-card__expiration-date">
+      <i class="fas fa-hourglass-end"></i>
+      until {{ deal.dateEnd | l10nDate:'en':{ dateStyle: 'medium' } }}
+    </p>
+  </div>
+</div>

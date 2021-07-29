@@ -1,0 +1,35 @@
+<main>
+  <div class="bd-container">
+    <div class="main__content">
+      <app-sidemenu (filtersChanged)="applyFilters()" [params]="queryParams"></app-sidemenu>
+      <div class="card__content">
+
+        <app-sorting-dropdown (selectedSorting)="applyFilters()"></app-sorting-dropdown>
+        <p-progressSpinner *ngIf="isLoading" animationDuration=".5s"></p-progressSpinner>
+        <div class="deal-gallery">
+          <div *ngIf="isLoading"></div>
+          <!-- <p-progressSpinner *ngIf="isLoading" animationDuration=".5s"></p-progressSpinner> -->
+          <div class="deal-gallery__nothing-found" *ngIf="!isLoading && deals.length < 1">
+            <div class="smiley"><i class="far fa-frown"></i></div>
+            <h2>{{ 'filters.nothingFound' | translate: locale.language }}</h2>
+            <h3>{{ 'filters.tryAnother' | translate: locale.language }}</h3>
+          </div>
+          <app-deal-card
+            *ngFor="let d of deals"
+            [deal]="d"
+            [addedToFavorites]="favorites.indexOf(d.id) >= 0"
+          >
+          </app-deal-card>
+        </div>
+        <a
+          class="deal-gallery__load-more"
+          *ngIf="!isLoading && totalPages > currentPage + 1"
+          (click)="handleLoadMore()"
+        >
+          <div><i class="fas fa-redo"></i></div>
+          <h2>{{ 'filters.loadMore' | translate: locale.language }}</h2>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>

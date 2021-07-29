@@ -1,0 +1,38 @@
+[
+    {
+      "category": "beauty",
+      "id": 1,
+      "tag": {
+        "name": "tag1",
+        "id": 1
+      }
+    },
+  
+    {
+      "category": "food",
+      "id": 2,
+      "tag": {
+        "name": "tag2",
+        "id": 2
+      }
+    },
+  
+    {
+      "category": "health",
+      "id": 3,
+      "tag": {
+        "name": "tag3",
+        "id": 3
+      }
+    },
+  
+    {
+      "category": "travel",
+      "id": 4,
+      "tag": {
+        "name": "tag4",
+        "id": 4
+      }
+    }
+  ]
+  

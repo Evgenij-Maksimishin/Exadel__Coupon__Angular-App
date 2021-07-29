@@ -1,0 +1,6 @@
+<div class="bd-container">
+  <h2>{{ 'search.showingResults' | translate: locale.language }} "{{ searchText }}"</h2>
+  <div class="deal-gallery">
+    <app-deal-card *ngFor="let d of deals" [deal]="d" [addedToFavorites]="favorites.indexOf(d.id) >=0"></app-deal-card>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+:host ::ng-deep {
+  .input-flex {
+    display: flex;
+    justify-content: space-between;
+    margin: -0.5rem;
+  }
+  .input-tags-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: -0.5rem;
+  }
+  .tag-item {
+    margin: 0.2rem;
+    cursor: pointer;
+  }
+  .p-field {
+    margin-top: 0.5rem;
+  }
+  .input-flex-field {
+    margin: 0.5rem;
+  }
+  .p-toolbar,
+  .p-toolbar-group-right {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .p-datatable {
+    .p-datatable-header,
+    .p-datatable-tbody > tr,
+    .p-datatable-thead > tr > th,
+    .p-paginator-bottom {
+      background: rgba(255, 255, 255, 0.6);
+      text-align: center;
+    }
+    .p-datatable-tbody > tr > td {
+      text-align: center;
+    }
+  }
+  .p-dialog .p-dialog-footer {
+    padding: 0 0.5rem 1.5rem 0.5rem;
+    button {
+      margin: 0;
+    }
+  }
+}
+.p-button {
+  margin-right: 0.313rem;
+}
+
+.p-d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+.p-field {
+  margin-bottom: 10px;
+}
+
+.location {
+  display: flex;
+}
+
+.filter {
+  margin-right: 10px;
+}
+
+.location__address {
+  display: flex;
+}
+
+.loc_input {
+  width: 40%;
+  margin-right: 10px;
+}
+.required-warning {
+  font-size: 0.875rem;
+  color: brown;
+}
+.btns {
+  text-align: end !important;
+}
+p-table {
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+.invalid {
+  color: red;
+}
+
+.footer__buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    display: inline;
+    justify-content: flex-end;
+    width: max-content !important;
+  }
+}
+
+.add-btn {
+  margin-left: 0.625rem;
+}

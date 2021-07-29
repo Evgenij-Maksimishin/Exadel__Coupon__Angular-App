@@ -1,0 +1,28 @@
+<header>
+  <div class="bd-container header-line">
+    <a class="logo" routerLink="">
+      <img src="/assets/images/logo-transparent.png" alt="logo" />
+    </a>
+    <app-search-bar></app-search-bar>
+    <p-avatar
+      icon="pi pi-user"
+      styleClass="p-mr-2"
+      [style]="{'background-color': '#9c27b0', color: '#ffffff'}"
+      size="large"
+      shape="circle"
+      class="user-picture"
+      (click)="menu.toggle($event)"
+    >
+    </p-avatar>
+    <p-menu
+      [showTransitionOptions]="'.12s cubic-bezier(0, 0, 0.2, 1)'"
+      [hideTransitionOptions]="'.12s cubic-bezier(0, 0, 0.2, 1)'"
+      #menu
+      [popup]="true"
+      [model]="items"
+      appendTo="header"
+      [baseZIndex]="10000"
+    >
+    </p-menu>
+  </div>
+</header>

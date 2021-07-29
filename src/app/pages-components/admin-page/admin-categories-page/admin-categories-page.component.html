@@ -1,0 +1,197 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table
+    #dt
+    [value]="categories"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="{{ 'admin.categoryPage.pageReport'
+      | translate:locale.language:{
+        first: '{first}',last: '{last}',totalRecords: '{totalRecords}'
+      }
+    }}"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">{{ 'admin.manageCategories' | translate: locale.language }}</h5>
+        <div>
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="applyFilterGlobal($event, 'contains')"
+                placeholder="Search..."
+                placeholder="{{ 'admin.search' | translate: locale.language }}"
+              />
+            </span>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-plus"
+              title="{{ 'admin.categoryPage.addNew' | translate: locale.language }}"
+              class="p-button-rounded p-button-success p-mr-2 add-btn"
+              (click)="openNew()"
+            ></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">
+          {{ 'admin.categoryPage.category' | translate: locale.language }}
+          <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="tags">
+          {{ 'admin.tags' | translate: locale.language }}<p-sortIcon field="tags"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>
+          <span *ngFor="let item of category.tags" class="tags__name">{{ item.name }}</span>
+        </td>
+
+        <td class="btns">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            title="{{ 'admin.categoryPage.edit' | translate: locale.language }}"
+            id="{{ category.id }}"
+            class="p-button-rounded p-button-success p-mr-2"
+            (click)="editCategory(category)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            title="{{ 'admin.categoryPage.delete' | translate: locale.language }}"
+            class="p-button-rounded p-button-danger p-mr-2"
+            (click)="deleteCategory(category)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  [(visible)]="categoryDialog"
+  [style]="{width: '550px'}"
+  header="{{ 'admin.categoryPage.categoryDetails' | translate: locale.language }}"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+      <div class="p-field">
+        <label for="name">{{ 'admin.categoryPage.category' | translate: locale.language }}</label>
+        <input 
+          accept-charset="utf-8" 
+          (change)="category.name=category.name.trim()" 
+          type="text" 
+          pInputText 
+          id="name" 
+          name="name"
+          #name="ngModel"
+          pattern=".{2,80}"
+          [(ngModel)]="category.name" 
+          ng-model-options="{ updateOn: 'blur' }"
+          maxlength="80"
+          minlength="2"
+          required 
+          autofocus 
+        />
+        <div *ngIf="name.errors && name.touched" class="invalid">
+          <div [hidden]="!name.errors?.pattern" class="invalid__message">
+            {{ 'admin.categoryPage.validation.category' | translate: locale.language }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="p-field" *ngFor="let item of category.tags; let i = index">
+        <label for="name">{{ 'admin.categoryPage.tag' | translate: locale.language }}</label>
+  
+        <div class="deleteTagByIndex__content">
+          <div class="deleteTagByIndex__input">
+            <input 
+              type="text" 
+              pInputText 
+              id="tag" 
+              name="tag"
+              #tag="ngModel"
+              pattern=".{2,80}"
+              ng-model-options="{ updateOn: 'blur' }"
+              maxlength="80"
+              minlength="2"
+              [(ngModel)]="item.name" 
+              required 
+              autofocus 
+              accept-charset="utf-8" 
+              (change)="item.name=item.name.trim()"
+            />
+            <div *ngIf="tag.errors && tag.touched" class="invalid">
+              <div [hidden]="!tag.errors?.pattern" class="invalid__message">
+                {{ 'admin.categoryPage.validation.category' | translate: locale.language }}
+              </div>
+            </div>
+          </div>
+  
+          <div>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger p-mr-2"
+              (click)="deleteTagByIndex(i, category)"
+            ></button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="addAdditionalTag__content">
+        <button
+          pButton
+          pRipple
+          icon="pi pi-plus"
+          title="{{ 'admin.categoryPage.addTag' | translate: locale.language }}"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="addAdditionalTag(category)"
+        ></button>
+      
+        <div>{{ 'admin.categoryPage.addTag' | translate: locale.language }}</div>
+      </div>
+  
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="{{ 'admin.cancel' | translate: locale.language }}"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="{{ 'admin.save' | translate: locale.language }}"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveCategory()"
+      [disabled]="
+        !this.category.name ||
+        !this.category.tags[0]"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

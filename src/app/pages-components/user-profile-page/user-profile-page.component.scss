@@ -1,0 +1,69 @@
+@import '../../../scss/vars';
+
+.profile-container {
+  max-width: 30rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  color: #2d2d2d;
+  margin: 1rem auto;
+}
+
+.credentials {
+  font-size: 1.25rem;
+  color: $main__text-color;
+  margin: auto 0;
+
+  p {
+    margin-bottom: 1rem;
+  }
+  p:first-child {
+    margin-top: 1rem;
+  }
+}
+
+.user-picture {
+  margin: 1rem 1rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: #9c27b0;
+  // background-color: #54278f;
+  text-align: center;
+
+  .user-icon {
+    height: 100%;
+    padding: 2rem;
+    font-size: 3rem;
+    color: #fff;
+  }
+}
+
+.subscriptions {
+  h2 {
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $main__text-color;
+  }
+}
+
+.user-subscriptions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .subscription-item {
+    margin: 0 auto 1rem;
+
+    h3 {
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+  }
+}

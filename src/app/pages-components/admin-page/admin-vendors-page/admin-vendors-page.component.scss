@@ -1,0 +1,146 @@
+.p-button {
+  margin-right: 0.625rem;
+}
+
+p-table {
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.p-d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+.p-field {
+  margin-bottom: 0.625rem;
+}
+
+textarea {
+  width: 100%;
+  font-size: 0.938rem;
+}
+
+.location {
+  display: flex;
+}
+
+.filter {
+  margin-right: 0.625rem;
+}
+
+.location__address {
+  display: flex;
+
+  input {
+    width: 350px;
+  }
+}
+
+.loc_input {
+  margin-right: 0.625rem;
+}
+
+:host ::ng-deep .p-datatable-header {
+  border-top: none;
+}
+
+:host ::ng-deep .p-paginator-bottom {
+  border-bottom: none;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  text-align: center;
+}
+
+:host ::ng-deep .p-dropdown {
+  border: 1px solid rgba(128, 128, 128, 0.18);
+}
+
+:host ::ng-deep {
+  .p-toolbar,
+  .p-toolbar-group-right,
+  .p-datatable .p-datatable-header,
+  .p-datatable .p-datatable-tbody > tr,
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-paginator-bottom {
+    background: none;
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.location__add-btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.625rem;
+}
+
+.loc-header {
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.location-label {
+  font-weight: 700;
+  margin-bottom: 0.938rem;
+}
+
+.add-location-label {
+  font-weight: 700;
+}
+
+.required-warning {
+  font-size: 0.875rem;
+  color: brown;
+}
+
+.invalid {
+  color: red;
+}
+
+.footer__buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    display: inline;
+    justify-content: flex-end;
+    width: max-content !important;
+  }
+}
+
+form input,
+form textarea,
+.country-item-value,
+.city-item-value {
+  color: black;
+}
+
+.p-dialog-content {
+  overflow-y: auto;
+}
+
+.add-btn {
+  margin-left: 0.625rem;
+}
